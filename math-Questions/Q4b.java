@@ -8,6 +8,7 @@ public class Maths {
 		double x = eqn.nextDouble();
 		double ans = (Math.exp(((Math.PI)/2) * x) * Math.sin(x)) + ((Math.log( Math.pow(Math.abs(x), 5))) * (Math.cos(x)));
 		System.out.format("The answer : %.2f", ans);
+        eqn.close;
 		
 		}
 	}
