@@ -11,7 +11,7 @@ public class myCar {
 	int year = 2022;
 	double price = 76983.09;
 	
-	static void open() {
+	 void open() {
 		Scanner bbb = new Scanner(System.in);
 		System.out.println("welcome to your car, would you like to drive or relax?");
 		String option = bbb.nextLine();
@@ -22,9 +22,10 @@ public class myCar {
 		else {
 			relax();
 		}
+		bbb.close();
 		
 	}
-	static void drive() {
+	void drive() {
 		Scanner bbb = new Scanner(System.in);
 		System.out.println("Use your seat belts\nDo you want autopilot(type yes for auto pilot ) or you want to drive(type drive for manual driving");
 		String nop = bbb.nextLine();
@@ -36,8 +37,9 @@ public class myCar {
 			System.out.println("i dont understand your command, type correct input");
 			drive();
 			}
+		bbb.close();
 	}
-	static void autopilot() {
+	void autopilot() {
 		Scanner bbb = new Scanner(System.in);
 		System.out.println("you can play game, watch movie, do your office work or anythoing you like while we are on our way to your destination");
 		System.out.println("Do you want to do any of the above type yes to relax");
@@ -48,11 +50,11 @@ public class myCar {
 			System.out.println("sit down and relax while we drive");
 		bbb.close();
 	}
-	static void mandrive() {
+	void mandrive() {
 		System.out.println("the steering , brakes , gears are now accessible to you now , Enjoy the wheel");
 				
 	}
-	static void relax() {
+	void relax() {
 		Scanner bbb = new Scanner(System.in);
 		System.out.println("Do you want a drink, play game or watch TV/netflix\nType 'Game' to play game, 'drink' for drinks , 'Tv' to watch TV ,or netflix");
 		String ppp = bbb.nextLine();
@@ -71,7 +73,7 @@ public class myCar {
 		}
 		bbb.close();
 	}
-	static void game() {
+	void game() {
 		Scanner bbb = new Scanner(System.in);
 		
 		System.out.println("would you like to play a guessing game type yes or no");
@@ -85,16 +87,15 @@ public class myCar {
 		}
 		bbb.close();
 	}
-	static void drink() {
+	void drink() {
 		System.out.println("press the left button to choose the beverages you want");
 	}
-	static void tv() {
+	void tv() {
 		System.out.println("you can enjoy the netflix , use the remote to navigate through the TV");
 	}
-	static void Guess() {
+	void Guess() {
         //a guessing game using the dialog box,User have three chnaces to play the game they can guess a number between 0 -9
 		Random guess = new Random();
-		Scanner input = new Scanner(System.in);
 		JOptionPane.showMessageDialog(null, "Are you ready to win an awesome prize\nPlay our lucky game to win");
         JOptionPane.showMessageDialog(null, "Guess a number between 0 to 9\n click okay to play");
 		int a = guess.nextInt(10);
