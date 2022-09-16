@@ -24,7 +24,7 @@ public class frame extends JFrame implements ActionListener {
 	frame(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setSize(500, 500);
-		this.setLayout(new FlowLayout());
+		//this.setLayout(new FlowLayout());
 		this.getContentPane().setBackground(Color.black);
 		
 		/*----------------------------------File MenuItem-------------------------------------------------*/
@@ -109,15 +109,9 @@ public class frame extends JFrame implements ActionListener {
 		mymenubar.add(colorMenu);
 		mymenubar.add(searchMenu);
 		mymenubar.setBackground(Color.yellow);
-		/**
-		mylabel = new JLabel();
-		mylabel.setText("This is some text");
-		mylabel.setFont(new Font("mv Boli", Font.PLAIN, 12));
-		mylabel.setBackground(Color.white);
-		mylabel.setOpaque(true);
-		**/
+		
 		mytextField = new JTextField();
-		mytextField.setPreferredSize(new Dimension(500 ,500));
+		//mytextField.setPreferredSize(new Dimension(500 ,500));
 		mytextField.setFont(new Font("Consolas", Font.BOLD, 12));
 		mytextField.setForeground(Color.red);
 		mytextField.setBackground(Color.white);
@@ -167,6 +161,7 @@ public class frame extends JFrame implements ActionListener {
 			JColorChooser Colorchooser = new JColorChooser();
 			Color color = JColorChooser.showDialog(null, "Pick a color", Color.red); //(parent component, title, initial color)
 			mytextField.setBackground(color);
+			
 			
 		}
 		else if(e.getSource() == textColor){
