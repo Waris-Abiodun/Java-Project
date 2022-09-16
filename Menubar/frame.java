@@ -1,5 +1,7 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.*;
 import java.io.File;
 
@@ -13,12 +15,17 @@ public class frame extends JFrame implements ActionListener {
 	JMenuItem restartitem;
 	JMenuItem exititem;
 	JMenuItem newitem;
-
+	
+	JMenuItem backgroundColor;
+	JMenuItem textColor;
+	
+	//JLabel mylabel;
+	JTextField mytextField;
 	frame(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 500);
+		//this.setSize(500, 500);
 		this.setLayout(new FlowLayout());
-		this.getContentPane().setBackground(Color.red);
+		this.getContentPane().setBackground(Color.black);
 		
 		/*----------------------------------File MenuItem-------------------------------------------------*/
 	
@@ -47,6 +54,16 @@ public class frame extends JFrame implements ActionListener {
 		newitem = new JMenuItem("New file");
 		newitem.setMnemonic(KeyEvent.VK_N);
 		newitem.addActionListener(this);
+		/*---------------------------------------color menuitem-------------------------------*/
+		textColor = new JMenuItem("Select text color");
+		textColor.setMnemonic(KeyEvent.VK_T);
+		textColor.addActionListener(this);
+		
+		backgroundColor = new JMenuItem("Select background color");
+		backgroundColor.setMnemonic(KeyEvent.VK_B);
+		backgroundColor.addActionListener(this);
+
+		
 
 
 		/*----------------------------------Menu-----------------------------------------------------*/
@@ -78,22 +95,43 @@ public class frame extends JFrame implements ActionListener {
 		JMenu helpMenu = new JMenu("help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		
+		JMenu colorMenu = new JMenu("Color");
+		colorMenu.setMnemonic(KeyEvent.VK_C);
+		colorMenu.add(textColor);
+		colorMenu.add(backgroundColor);
 		/*-----------------------------------Menubar---------------------------------------------------*/
 		JMenuBar mymenubar = new JMenuBar();
 		mymenubar.add(fileMenu);
 		mymenubar.add(editMenu);
 		mymenubar.add(sourceMenu);
 		mymenubar.add(refactorMenu);
-		mymenubar.add(searchMenu);
 		mymenubar.add(helpMenu);
+		mymenubar.add(colorMenu);
+		mymenubar.add(searchMenu);
 		mymenubar.setBackground(Color.yellow);
+		/**
+		mylabel = new JLabel();
+		mylabel.setText("This is some text");
+		mylabel.setFont(new Font("mv Boli", Font.PLAIN, 12));
+		mylabel.setBackground(Color.white);
+		mylabel.setOpaque(true);
+		**/
+		mytextField = new JTextField();
+		mytextField.setPreferredSize(new Dimension(500 ,500));
+		mytextField.setFont(new Font("Consolas", Font.BOLD, 12));
+		mytextField.setForeground(Color.red);
+		mytextField.setBackground(Color.white);
+		mytextField.setCaretColor(Color.black);   //the cursor that is blinking 
+		//mytextField.setText("username");
 		
+		this.add(mytextField);
 		this.setJMenuBar(mymenubar);
+		this.pack();
 		this.setVisible(true);
 	}
 
 	
-	private static final long serialVersionUID = 1L;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -125,7 +163,21 @@ public class frame extends JFrame implements ActionListener {
 		else if (e.getSource() == exititem) {
 			System.exit(0);
 		}
-		else 
+		else if(e.getSource() == backgroundColor){
+			JColorChooser Colorchooser = new JColorChooser();
+			Color color = JColorChooser.showDialog(null, "Pick a color", Color.red); //(parent component, title, initial color)
+			mytextField.setBackground(color);
+			
+		}
+		else if(e.getSource() == textColor){
+			JColorChooser Colorchooser = new JColorChooser();
+			Color color = JColorChooser.showDialog(null, "Pick a color", Color.red); //(parent component, title, initial color)
+			mytextField.setForeground(color);
+			
+			
+		}
+
+		else
 		{
 			System.out.println("Processing...");
 		}
@@ -133,5 +185,5 @@ public class frame extends JFrame implements ActionListener {
 		
 	}
 	
-
+	private static final long serialVersionUID = 1L;
 }
