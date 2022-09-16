@@ -1,13 +1,9 @@
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
+import java.io.File;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 
 public class frame extends JFrame implements ActionListener {
 	
@@ -101,14 +97,24 @@ public class frame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/*--------------------------------File chooser----------------------*/
+		JFileChooser filechooser = new JFileChooser();
+		
+		filechooser.setCurrentDirectory(new File("."));  //setting the directory you want to open using the file path or passing "." to select the current path
 		if (e.getSource() == openitem) {
 			System.out.println("Opening a file");
+			int select = filechooser.showOpenDialog(null);  //this will set file to open, if a file is selected it will return 0 and 1 if not
+			if (select == JFileChooser.APPROVE_OPTION) {
+				File nfile = new File(filechooser.getSelectedFile().getAbsolutePath());
+				System.out.println(nfile);
+			}
 		}
 		else if (e.getSource() == recentitem) {
 			System.out.println("Opening recent file");
 		}
 		else if (e.getSource() == saveitem) {
-			System.out.println("Saving a file");
+			System.out.println("Saving a file"); 
+			filechooser.showSaveDialog(null);   //open a prompt to save afile
 		}
 		else if (e.getSource() == newitem) {
 			System.out.println("Opening a new file");
